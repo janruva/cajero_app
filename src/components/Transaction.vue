@@ -37,7 +37,7 @@ export default {
         value: this.cantidad
       }
       axios
-        .put("http://localhost:8000/user/transaction/", data)
+        .put("https://cajero-api91.herokuapp.com/user/transaction/", data)
         .then(response => {
           alert("La transacción se realizó con éxito");
           this.$router.push({
