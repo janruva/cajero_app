@@ -5,7 +5,7 @@
       <nav>
         <button v-on:click="init" v-if="is_auth">inicio</button>
         <button v-on:click="getBalance" v-if="is_auth">Saldo</button>
-        <button v-if="is_auth">Transacción</button>
+        <button v-on:click="getTransaction" v-if="is_auth">Transacción</button>
         <button v-if="is_auth">Cerrar Sesión</button>
       </nav>
     </div>
@@ -39,17 +39,21 @@ export default {
     getBalance: function(){
       if(this.$route.name != "user_balance"){
         let username = localStorage.getItem("current_username")
-        this.$router.push({ name:"user_balance",
-                params:{username:username}})
+        this.$router.push({ name:"user_balance", params:{username:username}});
       }
     },
+    getTransaction: function(){
+      if(this.$route.name != "transaction"){ // Si yo estoy en esta ruta no haga el evento
+      this.$router.push({ name:"transaction"});
+      }
+    }
   },
     beforeCreate: function(){
-      localStorage.setItem('current_username', 'janruva')
-      localStorage.setItem('isAuth', true)
-      this.$router.push({name:"user",params:{username:'janruva'}})
-    }
-  }
+      localStorage.setItem('current_username', 'janruva');
+      localStorage.setItem('isAuth', true);
+      this.$router.push({name:"user",params:{username:'janruva'}});
+    },
+  };
 </script>
 
 <style>
